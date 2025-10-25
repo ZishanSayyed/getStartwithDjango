@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Compare Django</title>
+    <link rel="stylesheet" href="{% static 'text_compare/style.css' %}">
+</head>
+<body>
+    <h1>Text Compare</h1>
+
+    <p class="small">Paste text on left and right, or use sample text buttons.</p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container">
+            <div class="pane">
+                <label><strong>Left text</strong></label>
+                <button type="button" onclick="pasteSample('left')">Sample</button>
+                <textarea name="left_text" id="left_text" rows="15">{{ left_text }}</textarea>
+            </div>
+
+            <div class="pane">
+                <label><strong>Right text</strong></label>
+                <button type="button" onclick="pasteSample('right')">Sample</button>
+                <textarea name="right_text" id="right_text" rows="15">{{ right_text }}</textarea>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="submit">Compare</button>
+            <button type="button" onclick="document.getElementById('left_text').value='';document.getElementById('right_text').value=''">Clear</button>
+        </div>
+    </form>
+
+    {% if diff_rows %}
+    <h2>Diff Result</h2>
+    <table class="diff">
+        {% for row in diff_rows %}
+        <tr>
+            <td class="lineno">{{ row.left_no }}</td>
+            <td class="leftcol {{ row.left_class|default:'' }}">{{ row.left_html|safe }}</td>
+            <td class="lineno">{{ row.right_no }}</td>
+            <td class="rightcol {{ row.right_class|default:'' }}">{{ row.right_html|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+<script>
+function pasteSample(side){
+    const sampleLeft = `Line one\nLine two\nLine three`;
+    const sampleRight = `Line one\nLine two changed\nLine three\nA new line on right`;
+
+    if(side === 'left') document.getElementById('left_text').value = sampleLeft;
+    else document.getElementById('right_text').value = sampleRight;
+}
+</script>
+</body>
+</html>

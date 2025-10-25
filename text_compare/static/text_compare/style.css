@@ -1,0 +1,127 @@
+/* text_compare/static/text_compare/css/style.css */
+
+body {
+    font-family: Inter, Roboto, Arial, sans-serif;
+    margin: 20px;
+    background: #1e1e2f;
+    color: #f0f0f0;
+}
+
+h1, h2, h3 {
+    color: #f8f8f8;
+}
+
+textarea {
+    width: 100%;
+    min-height: 220px;
+    font-family: monospace;
+    font-size: 13px;
+    padding: 10px;
+    background: #2a2a3b;
+    color: #f0f0f0;
+    border: 1px solid #444;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+button {
+    background: #2e2e44;
+    color: #f0f0f0;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+button:hover {
+    background: #3a3a55;
+}
+
+/* Diff table styles */
+table.diff {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 16px;
+}
+
+table.diff td {
+    vertical-align: top;
+    padding: 6px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: monospace;
+    font-size: 13px;
+    border-bottom: 1px solid #333;
+}
+
+.lineno {
+    width: 42px;
+    text-align: right;
+    padding-right: 8px;
+    color: #888;
+}
+
+.leftcol {
+    width: 50%;
+    background: #242434;
+}
+
+.rightcol {
+    width: 50%;
+    background: #242434;
+}
+
+/* GitHub-like diff colors for dark mode */
+.added {
+    background: #133b2c;
+}
+
+.removed {
+    background: #4b1f28;
+}
+
+.changed {
+    background: #3b2f12;
+}
+
+/* Inline changes */
+.ins {
+    background: #1e5631;
+    display: inline;
+}
+
+.del {
+    background: #7a1c29;
+    text-decoration: line-through;
+    display: inline;
+}
+
+.chg {
+    background: #5a4a1f;
+    display: inline;
+}
+
+/* Layout helpers */
+.container {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.pane {
+    flex: 1;
+}
+
+.actions {
+    margin-top: 8px;
+}
+
+.small {
+    font-size: 12px;
+    color: #aaa;
+}
